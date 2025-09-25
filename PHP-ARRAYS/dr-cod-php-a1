@@ -1,4 +1,0 @@
-<?php
-
-$conta = readline("Qual o valor da conta? ");
-echo "O valor total com gorjeta foi: " . $conta * 0.1;

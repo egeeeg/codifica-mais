@@ -9,7 +9,11 @@ function calcularMedia() {
 ];
     foreach ($notasAlunos as $index => $notas) {
     $media = array_sum($notas) / count($notas);
-    echo "A média do Aluno " . ($index + 1) . " é: " . number_format($media, 2) . "\n";
+    if ($media < 7) {
+        echo "Aluno " . ($index + 1) . " - Média: " . number_format($media, 2) . " - Reprovado\n";
+    } else {
+        echo "Aluno " . ($index + 1) . " - Média: " . number_format($media, 2) . " - Aprovado\n";
+    };
 }
     return array_sum($notas) / count($notas);
 }

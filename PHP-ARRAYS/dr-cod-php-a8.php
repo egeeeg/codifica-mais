@@ -20,4 +20,4 @@ $valorCompra = floatval(trim(fgets(STDIN)));
 
 $valorFinal = calcularDescontoProgressivo($valorCompra);
 
-echo "Valor final após desconto progressivo: R$ " . number_format($valorFinal, 2, ',', '.') . PHP_EOL;
+echo "Valor final após desconto progressivo: R$ " . number_format($valorFinal, 2, ',', '.');

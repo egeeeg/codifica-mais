@@ -1,9 +1,0 @@
-{
-    "name": "projeto/estoque",
-    "autoload": {
-        "psr-4": {
-            "App\\": "src/"
-        }
-    },
-    "require": {}
-}

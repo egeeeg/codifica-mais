@@ -5,12 +5,10 @@
             <a href="index.php" class="close-btn">X</a>
         </div>
 
-        <!-- Caixa de Erro JavaScript (Invisível até dar erro) -->
         <div id="custom-error-box" class="error-box-js">
             Preencha todos os campos obrigatórios!
         </div>
         
-        <!-- 'novalidate' desliga o balão feio do navegador -->
         <form id="product-form" action="?action=<?= $productToEdit ? 'update&id='.$productToEdit['id'] : 'store' ?>" method="POST" enctype="multipart/form-data" novalidate>
             
             <label>Nome do Produto</label>
@@ -18,8 +16,8 @@
 
             <div class="row">
                 <div class="col">
-                    <label>Unidade (UM)</label>
-                    <input type="text" name="unidade" placeholder="UN/KG/L" value="<?= $productToEdit['unidade'] ?? '' ?>" required>
+                    <label>Quantidade</label>
+                    <input type="text" name="unidade" placeholder="99" value="<?= $productToEdit['unidade'] ?? '' ?>" required>
                 </div>
                 <div class="col">
                     <label>Nota / Obs</label>
@@ -53,7 +51,6 @@
 </div>
 
 <script>
-    // Preview de Imagem
     document.getElementById('file-upload').addEventListener('change', function(event) {
         const file = event.target.files[0];
         if (file) {
@@ -69,28 +66,25 @@
         }
     });
 
-    // Validação Customizada (Substitui a nativa)
     document.getElementById('product-form').addEventListener('submit', function(e) {
         const inputs = this.querySelectorAll('input[required]');
         let hasError = false;
         const errorBox = document.getElementById('custom-error-box');
 
-        // Limpa erros anteriores
         errorBox.style.display = 'none';
         inputs.forEach(input => input.classList.remove('input-error'));
 
-        // Valida campos
         inputs.forEach(input => {
             if (!input.value.trim()) {
                 hasError = true;
-                input.classList.add('input-error'); // Pinta borda de vermelho
+                input.classList.add('input-error'); 
             }
         });
 
         if (hasError) {
-            e.preventDefault(); // Impede o envio
+            e.preventDefault();
             errorBox.innerText = "Preencha os campos destacados!";
-            errorBox.style.display = 'block'; // Mostra a caixa vermelha
+            errorBox.style.display = 'block'; 
         }
     });
 </script>

@@ -1,7 +1,6 @@
 <?php
 require 'config.php';
 
-// Controle de Sessão
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit;
@@ -10,7 +9,6 @@ if (!isset($_SESSION['user_id'])) {
 $action = $_GET['action'] ?? 'list';
 $id = $_GET['id'] ?? null;
 
-// Lógica de CRUD (POST)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($action === 'store') {
         $img = uploadImage($_FILES['imagem']);
@@ -31,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Ações GET (Delete / Logout)
 if ($action === 'delete' && $id) {
     $stmt = $pdo->prepare("DELETE FROM produtos WHERE id = ?");
     $stmt->execute([$id]);
@@ -44,7 +41,6 @@ if ($action === 'logout') {
     exit;
 }
 
-// Carrega Views
 $view = 'views/list.php';
 $productToEdit = null;
 if ($action === 'create' || $action === 'edit') {
@@ -56,7 +52,6 @@ if ($action === 'create' || $action === 'edit') {
     }
 }
 
-// Pesquisa
 $search = $_GET['search'] ?? '';
 $sqlList = "SELECT * FROM produtos WHERE nome LIKE ? ORDER BY id DESC";
 $stmtList = $pdo->prepare($sqlList);
@@ -72,7 +67,6 @@ $produtos = $stmtList->fetchAll(PDO::FETCH_ASSOC);
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-    <!-- Top Bar Principal -->
     <header class="top-bar">
         <div class="brand-logo">
             <span class="material-icons">inventory_2</span> Estoque
@@ -83,7 +77,6 @@ $produtos = $stmtList->fetchAll(PDO::FETCH_ASSOC);
             <button type="submit"><span class="material-icons">search</span></button>
         </form>
 
-        <!-- Área do Usuário com Dropdown -->
         <div class="user-controls" id="userMenuBtn">
             <div class="user-profile">
                 <span class="material-icons">account_circle</span>
@@ -91,19 +84,16 @@ $produtos = $stmtList->fetchAll(PDO::FETCH_ASSOC);
                 <span class="material-icons" style="font-size: 16px;">expand_more</span>
             </div>
             
-            <!-- Menu Dropdown -->
             <div class="dropdown-menu" id="dropdownMenu">
                 <a href="?action=logout" class="dropdown-item logout">Sair</a>
             </div>
         </div>
     </header>
 
-    <!-- Conteúdo -->
     <main class="content">
         <?php include $view; ?>
     </main>
 
-    <!-- Script Simples para o Menu Dropdown -->
     <script>
         const menuBtn = document.getElementById('userMenuBtn');
         const dropdown = document.getElementById('dropdownMenu');

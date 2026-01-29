@@ -9,7 +9,7 @@
             <tr>
                 <th style="width: 30px;"></th>
                 <th>nome</th>
-                <th>UM</th>
+                <th>QTD</th>
                 <th>NOTA</th>
                 <th>PREÇO</th>
                 <th>Ações</th>

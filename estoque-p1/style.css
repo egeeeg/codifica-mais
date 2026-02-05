@@ -1,0 +1,463 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.top-bar {
+    height: 80px;
+    background: white;
+    border-bottom: 2px solid #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 100;
+}
+
+.brand-logo {
+    font-size: 1.2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #000;
+    border-radius: 30px;
+    width: 450px;
+    height: 50px;
+    padding: 0 15px;
+    background: #f9f9f9;
+    overflow: hidden;
+}
+
+.search-box input {
+    appearance: none;
+    -webkit-appearance: none;
+    border: none;
+    background: transparent;
+    outline: none;
+    flex: 1;
+    font-size: 1rem;
+    line-height: 50px;
+    height: 100%;
+    margin: 0;
+    padding: 0 10px;
+    vertical-align: middle;
+}
+
+.search-box input:-webkit-autofill,
+.search-box input:-webkit-autofill:hover, 
+.search-box input:-webkit-autofill:focus, 
+.search-box input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #f9f9f9 inset !important;
+    -webkit-text-fill-color: #000 !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.search-box button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0 5px;
+}
+
+.user-controls {
+    position: relative;
+    cursor: pointer;
+}
+
+.user-profile {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: background 0.2s;
+    user-select: none;
+}
+
+.user-profile:hover {
+    background-color: #eee;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 120%;
+    right: 0;
+    background: white;
+    border: 2px solid #000;
+    border-radius: 8px;
+    width: 140px;
+    overflow: hidden;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-item {
+    display: block;
+    padding: 12px 15px;
+    color: #333;
+    font-weight: 500;
+    border-bottom: 1px solid #eee;
+    font-size: 0.95rem;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-item.logout {
+    color: red;
+}
+
+.dropdown-item.logout:hover {
+    background-color: #ffeaea;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-header {
+    padding: 30px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-title {
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.table-container {
+    padding: 0 20px 20px 20px;
+    overflow-y: auto;
+    height: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid #000;
+    background: white;
+}
+
+tr {
+    border-bottom: 1px solid #000;
+}
+
+tr:last-child {
+    border-bottom: none;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    vertical-align: middle;
+    border: none;
+}
+
+thead tr {
+    border-bottom: 2px solid #000;
+}
+
+th {
+    background: #fff;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.thumb-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #333;
+    display: block;
+}
+
+.checkbox-mock {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #333;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+td:last-child, th:last-child {
+    width: 120px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.actions {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.icon-btn {
+    color: #333;
+    padding: 8px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.icon-btn:hover {
+    background-color: #ddd;
+}
+
+.icon-btn.delete:hover {
+    color: white;
+    background-color: red;
+}
+
+.btn-add {
+    color: #000;
+    transform: scale(1.5);
+    transition: transform 0.2s;
+}
+
+.btn-add:hover {
+    transform: scale(1.7);
+}
+
+/* =========================================
+   5. Modal / Formulário
+   ========================================= */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(2px);
+}
+
+.modal-card {
+    background: white;
+    width: 450px;
+    padding: 25px;
+    border: 3px solid #000;
+    border-radius: 15px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.modal-header h3 {
+    font-weight: 900;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+.close-btn {
+    font-weight: bold;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #000;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+form input:focus {
+    background-color: #fffde7;
+    border-color: #000;
+}
+
+input.input-error {
+    border-color: #ff4444 !important;
+    background-color: #ffeaea !important;
+}
+
+.row {
+    display: flex;
+    gap: 15px;
+}
+
+.col {
+    flex: 1;
+}
+
+.upload-area {
+    border: 2px dashed #000;
+    padding: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #fafafa;
+    position: relative;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    display: block;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.preview-box {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+}
+
+.preview-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.btn-save {
+    width: 100%;
+    padding: 15px;
+    background: #000;
+    color: white;
+    border: none;
+    font-weight: bold;
+    font-size: 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 0.1s;
+    box-shadow: 3px 3px 0px #555;
+}
+
+.btn-save:hover {
+    background-color: #333;
+}
+
+.btn-save:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0px #555;
+}
+
+/* =========================================
+   6. Alertas e Estilos de Erro
+   ========================================= */
+
+/* Caixa de Erro JavaScript (Minimalista sem sombra/animação) */
+.error-box-js {
+    display: none;
+    background-color: #ff4444;
+    color: white;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    text-align: center;
+    border: 2px solid #000;
+}
+
+/* Estilos de Login */
+.login-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #333;
+    height: 100vh;
+}
+
+.login-card {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    width: 350px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.login-card button {
+    margin-top: 20px;
+    background: #000;
+    color: white;
+    padding: 12px;
+    width: 100%;
+    font-weight: bold;
+    border-radius: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+}

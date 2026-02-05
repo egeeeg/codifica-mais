@@ -2,7 +2,7 @@
 $host = 'localhost';
 $dbname = 'estoque_p1';
 $user = 'root';
-$pass = 'R@ngel#22';
+$pass = '';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
